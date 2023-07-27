@@ -4,6 +4,7 @@ from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
 from rest_framework.pagination import LimitOffsetPagination
 from rest_framework import mixins
+from rest_framework import filters
 
 from posts.models import Post, Group, Follow
 
@@ -48,6 +49,8 @@ class ListCreateViewSet(mixins.CreateModelMixin, mixins.ListModelMixin, viewsets
 class FollowViewSet(ListCreateViewSet):
     serializer_class = FollowSerializer
     permission_classes = (IsAuthenticated,)
+    filter_backends = (filters.SearchFilter,)
+    search_fields = ('following__username',)
 
     def get_queryset(self):
         return self.request.user.following.all()
