@@ -61,7 +61,7 @@ python3 manage.py runserver
 http://127.0.0.1:8000/redoc/
 
 ### Стек технологий:
-- Python
+- Python 3.9
 - Django Framework
 - Django Rest Framework
 - JWT+Djoser
